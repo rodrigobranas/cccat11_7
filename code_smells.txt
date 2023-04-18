@@ -1,0 +1,43 @@
+code smells
+
+1 - nomes
+
+* renomear variável
+* renomear função ou método
+* renomear classe ou arquivo
+
+2 - linha em branco dentro de função ou método
+
+* apagar linha em branco
+
+3 - comentários
+
+* criando variáveis explicativas
+* extraindo métodos explicativos
+
+4 - código morto
+
+* apagar código comentado
+
+5 - if/else complexo
+
+* introdução de cláusula guarda
+* consolidar comandos condicionais
+* introduzir ternário
+
+6 - magic number
+
+* introduzir constantes ou variáveis explicativas
+
+7 - tratamento de erros inadequado
+
+* utilizar um tratamento de erros adequado
+
+8 - longa lista de parâmetros
+
+* introduzindo objetos
+* introduzindo objetos parâmetro
+
+9 - classe grande
+
+* mover métodos
