@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import Checkout from "./Checkout";
 const app = express();
 app.use(express.json());
+// boundary
 app.post("/checkout", async function (req: Request, res: Response) {
 	const checkout = new Checkout();
 	try {

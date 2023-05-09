@@ -1,6 +1,6 @@
 import { connect } from "amqplib";
 import Checkout from "./Checkout";
-
+// boundary
 async function main () {
 	const connection = await connect("amqp://localhost");
 	const channel = await connection.createChannel();

@@ -1,5 +1,5 @@
 import Checkout from "./Checkout";
-
+// boundary
 const input: { 
 	cpf: string, 
 	items: { idProduct: number, quantity: number }[], 
