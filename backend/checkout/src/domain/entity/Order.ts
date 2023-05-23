@@ -1,19 +1,23 @@
 import Coupon from "./Coupon";
 import Cpf from "./Cpf";
 import Item from "./Item";
+import OrderCode from "./OrderCode";
 import Product from "./Product";
 
+// Entity - Aggregate Root
 export default class Order {
 	cpf: Cpf;
 	items: Item[];
 	code: string;
+	orderCode: OrderCode;
 	coupon?: Coupon;
 	freight: number = 0;
 
 	constructor (readonly idOrder: string | undefined, cpf: string, readonly date: Date = new Date(), readonly sequence: number = 1) {
 		this.cpf = new Cpf(cpf);
 		this.items = [];
-		this.code = `${date.getFullYear()}${new String(sequence).padStart(8, "0")}`;
+		this.orderCode = new OrderCode(date, sequence);
+		this.code = this.orderCode.getCode();
 	}
 
 	addItem (product: Product, quantity: number) {

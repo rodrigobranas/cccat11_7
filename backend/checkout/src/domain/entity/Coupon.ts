@@ -1,5 +1,6 @@
 export default class Coupon {
 
+	// Entity
 	constructor (readonly code: string, readonly percentage: number, readonly expireDate: Date) {
 	}
 

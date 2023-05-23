@@ -4,14 +4,15 @@ import GetProducts from "../../application/usecase/GetProducts";
 import JsonPresenter from "../presenter/JsonPresenter";
 import Presenter from "../presenter/Presenter";
 import RepositoryFactory from "../../application/factory/RepositoryFactory";
+import GatewayFactory from "../../application/factory/GatewayFactory";
 
 export default class UsecaseFactory {
 
-	constructor (readonly repositoryFactory: RepositoryFactory) {
+	constructor (readonly repositoryFactory: RepositoryFactory, readonly gatewayFactory: GatewayFactory) {
 	}
 
 	createCheckout () {
-		return new Checkout(this.repositoryFactory);
+		return new Checkout(this.repositoryFactory, this.gatewayFactory);
 	}
 
 	createGetProducts (type: string) {

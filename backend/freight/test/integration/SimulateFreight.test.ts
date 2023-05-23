@@ -1,14 +1,11 @@
 import DatabaseRepositoryFactory from "../../src/infra/factory/DatabaseRepositoryFactory";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
-import ProductRepositoryDatabase from "../../src/infra/repository/ProductRepositoryDatabase";
 import SimulateFreight from "../../src/application/usecase/SimulateFreight";
 
 test("Deve simular o frete", async function () {
 	const input = {
 		items: [
-			{ idProduct: 1, quantity: 1 },
-			{ idProduct: 2, quantity: 1 },
-			{ idProduct: 3, quantity: 3 }
+			{ volume: 0.03, density: 100, quantity: 1 }
 		],
 		from: "88015600",
 		to: "22030060"
@@ -18,6 +15,6 @@ test("Deve simular o frete", async function () {
 	const repositoryFactory = new DatabaseRepositoryFactory(connection);
 	const simulateFreight = new SimulateFreight(repositoryFactory);
 	const output = await simulateFreight.execute(input);
-	expect(output.freight).toBe(280);
+	expect(output.freight).toBe(30);
 	await connection.close();
 });

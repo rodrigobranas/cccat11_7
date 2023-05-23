@@ -9,10 +9,8 @@ export default class HttpController {
 
 	constructor (httpServer: HttpServer, usecaseFactory: UsecaseFactory) {
 		httpServer.on("post", "/checkout", async function (params: any, body: any) {
-			console.log(body);
 			const checkout = usecaseFactory.createCheckout();
 			const output = await checkout.execute(body);
-			console.log(output);
 			return output;
 		});
 

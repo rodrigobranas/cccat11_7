@@ -12,6 +12,7 @@ export default class HttpCheckoutGateway implements CheckoutGateway {
 		const productsData = await this.httpClient.get("http://localhost:3000/products");
 		const products: Product[] = [];
 		for (const productData of productsData) {
+			// ACL - Translate
 			products.push(new Product(productData.idProduct, productData.description, productData.price));
 		}
 		return products;
