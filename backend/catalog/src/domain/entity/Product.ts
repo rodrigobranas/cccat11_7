@@ -6,12 +6,12 @@ export default class Product {
 		if (weight <= 0) throw new Error("Invalid weight");
 	}
 
-	getVolume () {
+	getVolume (): number {
 		const volume = this.width/100 * this.height/100 * this.length/100;
 		return volume;
 	}
 	
-	getDensity () {
+	getDensity (): number {
 		const density = this.weight/this.getVolume();
 		return density;
 	}

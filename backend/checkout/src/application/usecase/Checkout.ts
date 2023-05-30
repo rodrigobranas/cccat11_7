@@ -1,9 +1,5 @@
-import ProductRepository from "../repository/ProductRepository";
 import CouponRepository from "../repository/CouponRepository";
-import ProductRepositoryDatabase from "../../infra/repository/ProductRepositoryDatabase";
-import CouponRepositoryDatabase from "../../infra/repository/CouponRepositoryDatabase";
 import OrderRepository from "../repository/OrderRepository";
-import OrderRepositoryDatabase from "../../infra/repository/OrderRepositoryDatabase";
 import Order from "../../domain/entity/Order";
 import RepositoryFactory from "../factory/RepositoryFactory";
 import GatewayFactory from "../factory/GatewayFactory";
@@ -12,14 +8,12 @@ import FreightGateway from "../gateway/FreightGateway";
 
 export default class Checkout {
 	orderRepository: OrderRepository;
-	productRepository: ProductRepository;
 	couponRepository: CouponRepository;
 	catalogGateway: CatalogGateway;
 	freightGateway: FreightGateway;
 
 	constructor (repositoryFactory: RepositoryFactory, gatewayFactory: GatewayFactory) {
 		this.orderRepository = repositoryFactory.createOrderRepository();
-		this.productRepository = repositoryFactory.createProductRepository();
 		this.couponRepository = repositoryFactory.createCouponRepository();
 		this.catalogGateway = gatewayFactory.createCatalogGateway();
 		this.freightGateway = gatewayFactory.createFreightGateway();

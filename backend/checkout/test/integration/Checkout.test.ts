@@ -3,8 +3,6 @@ import sinon from "sinon";
 import Checkout from "../../src/application/usecase/Checkout";
 import CouponRepository from "../../src/application/repository/CouponRepository";
 import CouponRepositoryDatabase from "../../src/infra/repository/CouponRepositoryDatabase";
-import ProductRepository from "../../src/application/repository/ProductRepository";
-import ProductRepositoryDatabase from "../../src/infra/repository/ProductRepositoryDatabase";
 import crypto from "crypto";
 import GetOrder from "../../src/application/usecase/GetOrder";
 import OrderRepositoryDatabase from "../../src/infra/repository/OrderRepositoryDatabase";
@@ -130,11 +128,11 @@ test("Deve fazer um pedido com 3 itens calculando o frete", async function () {
 			{ idProduct: 2, quantity: 1 }
 		],
 		from: "88015600",
-		to: "22030060"
+		to: "22060030"
 	};
 	const output = await checkout.execute(input);
-	expect(output.freight).toBe(250);
-	expect(output.total).toBe(6250);
+	expect(output.freight).toBe(187.05544450204079);
+	expect(output.total).toBe(6187.055444502041);
 });
 
 test("Deve fazer um pedido com 3 itens calculando o frete com preço mínimo", async function () {

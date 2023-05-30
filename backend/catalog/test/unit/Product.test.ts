@@ -1,3 +1,4 @@
+import DigitalProduct from "../../src/domain/entity/DigitalProduct";
 import Product from "../../src/domain/entity/Product";
 
 test("Deve calcular o volume", function () {
@@ -16,4 +17,12 @@ test("Não deve criar produto com dimensões inválidas", function () {
 
 test("Não deve criar produto com peso inválido", function () {
 	expect(() => new Product(1, "A", 1000, 100, 100, 100, -10)).toThrow(new Error("Invalid weight"));
+});
+
+test("Deve criar um produto digital", function () {
+	const product = new DigitalProduct(2, "B", 1000);
+});
+
+test("Deve calcular o volume com um produto digital", function () {
+	const product = new DigitalProduct(1, "A", 1000);
 });

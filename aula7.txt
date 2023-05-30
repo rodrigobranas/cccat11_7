@@ -1,0 +1,15 @@
+Aula 7
+
+Parte 4
+
+1 - Calcule a distância entre dois CEPs e utilize no algoritmo de cálculo do frete
+2 - Calcular frete (caso de uso)
+
+Cadastrar no banco de dados 2 ou 3 CEPs e associar com as coordenadas das cidades dos CEPs, apenas para viabilizar os cálculos, não é necessário carregar a base de CEPs inteira
+Utilizar o algoritmo de cálculo e arquivo com as coordenadas: https://github.com/rodrigobranas/distance_calculator
+
+Parte 6
+
+file:///Users/rodrigobranas/Desktop/11_8_solid/index.html
+
+1 - Implemente um microservice de autenticação com usuário, email, senha e token
