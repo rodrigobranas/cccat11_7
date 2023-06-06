@@ -57,3 +57,9 @@ create table cccat11.zipcode (
 
 insert into cccat11.zipcode (code, lat, long) values ('22060030',-27.5945,-48.5477);
 insert into cccat11.zipcode (code, lat, long) values ('88015600',-22.9129,-43.2003);
+
+create table cccat11.stock_entry (
+	id_product integer,
+	operation text,
+	quantity integer
+);

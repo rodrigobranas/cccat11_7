@@ -9,6 +9,21 @@ export default class OrderRepositoryDatabase implements OrderRepository {
 	constructor (readonly connection: DatabaseConnection) {
 	}
 
+	async list(): Promise<Order[]> {
+		const orders: Order[] = [];
+		const ordersData = await this.connection.query("select * from cccat11.order", []);
+		for (const orderData of ordersData) {
+			const order = new Order(orderData.id_order, orderData.cpf, orderData.date, orderData.sequence);
+			const itemsData = await this.connection.query("select * from cccat11.item where id_order = $1", [order.idOrder]);
+			for (const itemData of itemsData) {
+				const item = new Item(itemData.id_product, parseFloat(itemData.price), itemData.quantity);
+				order.items.push(item);
+			}
+			orders.push(order);
+		}
+		return orders;
+	}
+
 	async get(idOrder: string): Promise<Order> {
 		const [orderData] = await this.connection.query("select * from cccat11.order where id_order = $1", [idOrder]);
 		const order = new Order(orderData.id_order, orderData.cpf, orderData.date, orderData.sequence);

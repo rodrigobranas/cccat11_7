@@ -5,18 +5,24 @@ import RepositoryFactory from "../factory/RepositoryFactory";
 import GatewayFactory from "../factory/GatewayFactory";
 import CatalogGateway from "../gateway/CatalogGateway";
 import FreightGateway from "../gateway/FreightGateway";
+import AuthGateway from "../gateway/AuthGateway";
+import Usecase from "./Usecase";
+import StockGateway from "../gateway/StockGateway";
+import Queue from "../../infra/queue/Queue";
 
-export default class Checkout {
+export default class Checkout implements Usecase {
 	orderRepository: OrderRepository;
 	couponRepository: CouponRepository;
 	catalogGateway: CatalogGateway;
 	freightGateway: FreightGateway;
+	stockGateway: StockGateway;
 
-	constructor (repositoryFactory: RepositoryFactory, gatewayFactory: GatewayFactory) {
+	constructor (repositoryFactory: RepositoryFactory, gatewayFactory: GatewayFactory, readonly queue?: Queue) {
 		this.orderRepository = repositoryFactory.createOrderRepository();
 		this.couponRepository = repositoryFactory.createCouponRepository();
 		this.catalogGateway = gatewayFactory.createCatalogGateway();
 		this.freightGateway = gatewayFactory.createFreightGateway();
+		this.stockGateway = gatewayFactory.createStockGateway();
 	}
 
 	async execute (input: Input): Promise<Output> {
@@ -49,6 +55,10 @@ export default class Checkout {
 			}
 		}
 		await this.orderRepository.save(order);
+		// await this.stockGateway.decreaseStock(order);
+		if (this.queue) {
+			await this.queue.publish("orderPlaced", order);
+		}
 		return {
 			freight: order.freight,
 			total: order.getTotal()
@@ -64,7 +74,7 @@ type Input = {
 	date?: Date,
 	coupon?: string, 
 	from?: string, 
-	to?: string 
+	to?: string
 }
 
 type Output = {

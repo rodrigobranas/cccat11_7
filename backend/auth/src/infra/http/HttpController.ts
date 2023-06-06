@@ -6,12 +6,11 @@ export default class HttpController {
 
 	constructor (httpServer: HttpServer, usecaseFactory: UsecaseFactory) {
 
-		// httpServer.on("get", "/products", async function (params: any, body: any, headers: any) {
-		// 	const contentType = headers["content-type"] || "application/json";
-		// 	const getProducts = usecaseFactory.createGetProducts(contentType);
-		// 	const output = await getProducts.execute();
-		// 	return output;
-		// });
+		httpServer.on("post", "/verify", async function (params: any, body: any, headers: any) {
+			const verify = usecaseFactory.createVerify();
+			const output = await verify.execute(body.token);
+			return output;
+		});
 
 	}
 }

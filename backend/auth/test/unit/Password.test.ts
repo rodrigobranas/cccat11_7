@@ -1,6 +1,5 @@
 import MD5Password from "../../src/domain/entity/MD5Password";
 import PBKDF2Password from "../../src/domain/entity/PBKDF2Password";
-import Password from "../../src/domain/entity/PBKDF2Password";
 import PlainPassword from "../../src/domain/entity/PlainPassword";
 import SHA1Password from "../../src/domain/entity/SHA1Password";
 
